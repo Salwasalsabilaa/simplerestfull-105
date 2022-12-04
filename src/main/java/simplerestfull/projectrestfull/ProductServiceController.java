@@ -13,23 +13,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Inspiron
  */
+@RestController
 public class ProductServiceController {
     private static Map<String, Product> productRepo = new HashMap<>();
     static {
-        Product honey = new Product();
-        honey.setId("1");
-        honey.setName("Pancake");
-        productRepo.put(honey.getId(), honey);
+        Product Pancake = new Product();
+        Pancake.setId("1");
+        Pancake.setName("Pancake");
+        productRepo.put(Pancake.getId(), Pancake);
         
-        Product almond = new Product();
-        almond.setId("2");
-        almond.setName("Croissant");
-        productRepo.put(almond.getId(), almond);
+        Product Croissant = new Product();
+        Croissant.setId("2");
+        Croissant.setName("Croissant");
+        productRepo.put(Croissant.getId(), Croissant);
     }
     
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
@@ -40,16 +42,26 @@ public class ProductServiceController {
     
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
-      productRepo.remove(id);
-      product.setId(id);
-      productRepo.put(id, product);
-      return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
+        if(!productRepo.containsKey(id)){
+            return new ResponseEntity<>("Product Not Found, Please check again", HttpStatus.NOT_FOUND);
+        }
+        else{
+            productRepo.remove(id);
+            product.setId(id);
+            productRepo.put(id, product);
+            return new  ResponseEntity<>("Product is updated Successfully",HttpStatus.OK);
+        }
     }
     
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Product product) {
-        productRepo.put(product.getId(), product);
-        return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
+        if(productRepo.containsKey(product.getId())){ 
+            return new ResponseEntity<>("ID Product Cannot be the Same, please check again", HttpStatus.OK);
+        }
+        else{
+            productRepo.put(product.getId(), product);
+            return new ResponseEntity<>("Product is created Successfully", HttpStatus.CREATED);
+        }
     }
     
     @RequestMapping(value = "/products")
