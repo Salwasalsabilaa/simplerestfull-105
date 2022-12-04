@@ -11,5 +11,4 @@ package simplerestfull.projectrestfull;
  */
 public class ProductServiceController {
     
-    
 }

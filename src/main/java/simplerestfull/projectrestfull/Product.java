@@ -9,10 +9,9 @@ package simplerestfull.projectrestfull;
  *
  * @author Inspiron
  */
-public class product {
+public class Product {
     private String id;
     private String name;
-    
     
     public String getId() {
         return id;
@@ -29,4 +28,5 @@ public class product {
     public void setName(String name) {
         this.name = name;
     }
+    
 }
