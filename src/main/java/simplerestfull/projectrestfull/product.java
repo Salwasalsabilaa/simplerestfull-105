@@ -9,7 +9,6 @@ package simplerestfull.projectrestfull;
  *
  * @author Inspiron
  */
-public class ProductServiceController {
-    
+public class product {
     
 }
