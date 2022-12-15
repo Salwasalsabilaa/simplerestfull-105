@@ -23,15 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductServiceController {
     private static Map<String, Product> productRepo = new HashMap<>();
     static {
-        Product Pancake = new Product();
-        Pancake.setId("1");
-        Pancake.setName("Pancake");
-        productRepo.put(Pancake.getId(), Pancake);
+        Product Kue = new Product();
+        Kue.setId("1");
+        Kue.setName("Pancake");
+        Kue.setTotal("5");
+        Kue.setHarga("10000");
+        productRepo.put(Kue.getId(), Kue);
         
-        Product Croissant = new Product();
-        Croissant.setId("2");
-        Croissant.setName("Croissant");
-        productRepo.put(Croissant.getId(), Croissant);
+        Product Minuman = new Product();
+        Minuman.setId("2");
+        Minuman.setName("Caramel Macchiato");
+        Minuman.setTotal("5");
+        Minuman.setHarga("20000");
+        productRepo.put(Minuman.getId(), Minuman);
     }
     
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)

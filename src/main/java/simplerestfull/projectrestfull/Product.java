@@ -12,6 +12,25 @@ package simplerestfull.projectrestfull;
 public class Product {
     private String id;
     private String name;
+    private String Total;
+    private String Harga;
+
+    public String getTotal() {
+        return Total;
+    }
+
+    public void setTotal(String Total) {
+        this.Total = Total;
+    }
+
+    public String getHarga() {
+        return Harga;
+    }
+
+    public void setHarga(String Harga) {
+        this.Harga = Harga;
+    }
+    
     
     public String getId() {
         return id;
